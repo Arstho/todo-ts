@@ -1,6 +1,8 @@
 import React from 'react';
-import './App.css';
-import TodosPage from './components/TodosPage';
+import TodosPage from './pages/TodosPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AboutUs from './pages/AboutUs';
+import Navbar from './components/Navbar';
 
 // export interface ITodo {
 //   title: string
@@ -12,9 +14,15 @@ function App() {
 
 
   return (
-    <div className="App">
-      <TodosPage/>
-    </div>
+    <BrowserRouter>
+      <div className="container">
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<TodosPage />} />
+          <Route path='/' element={<AboutUs />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
