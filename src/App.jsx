@@ -2,7 +2,7 @@ import React from 'react';
 import TodosPage from './pages/TodosPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AboutUs from './pages/AboutUs';
-import Navbar from './components/Navbar';
+import { Navbar } from './components/Navbar';
 
 // export interface ITodo {
 //   title: string

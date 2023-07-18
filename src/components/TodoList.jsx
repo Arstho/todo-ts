@@ -3,21 +3,21 @@ import TodoItem from './TodoItem';
 import styles from './styles.module.scss';
 
 const TodoList = () => {
+  const inputRef = React.useRef(null);
+  const [txtTodo, setTxtTodo] = React.useState('');
   const [todos, setTodos] = React.useState([
     { id: 1, title: 'vhkbjlnm', completed: true },
     { id: 2, title: 'vhkbjlnm', completed: false },
     { id: 3, title: 'vhkbjlnm', completed: false },
   ]);
-  const [txtTodo, setTxtTodo] = React.useState('');
 
-  const inputRef = React.useRef(null);
-
-  const removeClick = React.useCallback((id) => {
+  const removeClick = (id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
-  }, []);
+  }
 
   const changeHandler = (e) => {
     setTxtTodo(e.target.value);
+    inputRef.current.focus();
   };
 
   const keyPressHandler = (e) => {
@@ -34,7 +34,7 @@ const TodoList = () => {
     }
   };
 
-  const handleChange = (id) => {
+  const handleDone = (id) => {
     setTodos((prev) =>
       prev.map((todo) => {
         if (todo.id === id) {
@@ -49,8 +49,9 @@ const TodoList = () => {
   };
 
   return (
-    <>
+    <div className={styles.todo}>
       <input
+        className={styles.input}
         ref={inputRef}
         type="text"
         value={txtTodo}
@@ -64,11 +65,11 @@ const TodoList = () => {
             todo={todo}
             index={i}
             removeClick={removeClick}
-            handleChange={handleChange}
+            handleDone={handleDone}
           />
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
